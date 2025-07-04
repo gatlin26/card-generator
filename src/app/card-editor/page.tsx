@@ -115,6 +115,7 @@ function CardEditorContent() {
     try {
       const dataUrl = await generateCardImage(cardRef.current);
       downloadImage(dataUrl, `${cardTitle.replace(/\s+/g, '-').toLowerCase()}.png`);
+      
       toast({
         title: "Card downloaded",
         description: "Your card has been saved as a PNG image.",

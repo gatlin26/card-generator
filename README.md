@@ -69,6 +69,9 @@ DATABASE_URL="postgresql://username:password@localhost:5432/cardcraft"
 
 # Next.js配置
 NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+
+# Google Analytics 4 配置
+NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
 ```
 
 ### 3. 数据库设置
@@ -155,6 +158,25 @@ npm run dev
 3. **部署**: Vercel 为首选部署平台，自动支持 Next.js
 4. **图片存储**: 可配置 Cloudinary 或 S3 用于生产环境的图片存储
 
+## 📊 Google Analytics 4 集成
+
+### 配置步骤
+
+1. **获取 GA4 测量 ID**
+   - 登录 [Google Analytics](https://analytics.google.com/)
+   - 创建新的 GA4 属性
+   - 获取测量 ID (格式: G-XXXXXXXXXX)
+
+2. **环境变量配置**
+   ```env
+   NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+   ```
+
+3. **自动功能**
+   - **页面访问追踪**: 自动记录所有页面访问和路由变化
+   - **无侵入集成**: 不影响现有代码和用户体验
+   - **生产环境优化**: 只在有效环境变量时启用
+
 ## 🐛 常见问题
 
 ### Q: 数据库连接失败？
@@ -165,6 +187,9 @@ A: 确保 `public/uploads` 目录存在且有写入权限。
 
 ### Q: TypeScript 类型错误？
 A: 运行 `npm run lint` 检查并修复类型问题。
+
+### Q: Google Analytics 数据不显示？
+A: 确认 `NEXT_PUBLIC_GA_MEASUREMENT_ID` 环境变量已正确设置，GA4 数据通常有延迟。
 
 ## 🤝 贡献指南
 
