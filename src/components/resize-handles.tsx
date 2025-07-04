@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { CardElement } from '@/hooks/use-card-editor';
 
 interface ResizeHandlesProps {
@@ -11,8 +11,8 @@ interface ResizeHandlesProps {
 export function ResizeHandles({ element, isSelected, onUpdate, zoom }: ResizeHandlesProps) {
   const [isResizing, setIsResizing] = useState(false);
 
-  const position = element.style.position || { x: 0, y: 0 };
-  const size = element.style.size || { width: 200, height: 50 };
+  const position = useMemo(() => element.style.position || { x: 0, y: 0 }, [element.style.position]);
+  const size = useMemo(() => element.style.size || { width: 200, height: 50 }, [element.style.size]);
 
   // 清理事件监听器
   useEffect(() => {

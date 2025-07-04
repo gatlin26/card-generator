@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { useParams } from 'next/navigation';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
@@ -17,7 +17,7 @@ import { templates } from '@/lib/templates';
 import { ArrowLeft, Download, Share2, Globe } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 
-export default function CardEditor() {
+function CardEditorContent() {
   const params = useParams();
   const shareId = params?.shareId;
   const pathname = usePathname();
@@ -369,5 +369,13 @@ export default function CardEditor() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CardEditor() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+      <CardEditorContent />
+    </Suspense>
   );
 } 
